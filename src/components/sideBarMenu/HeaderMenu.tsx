@@ -1,19 +1,20 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import {useState} from "react";
+import {useContext} from "react";
+import {IsShowMenu} from '@/store/IsShowMenu';
 
-
-export function TopLine(){
-    const [menuState, setMenuState] = useState(false)
-    const MenuToggle = (e:any)=>{
-        menuState?setMenuState(false):setMenuState(true);
+export function HeaderMenu(){
+    const show_menu = useContext(IsShowMenu)
+    function MenuBtnToggle(){
+        show_menu.menuToggle()
     }
-
     return (
-        <div className={"w-full bg-gray-300 p-2 text-end"}>
-            {menuState && <FontAwesomeIcon icon={faXmark} className={"text-[24px]"} onClick={MenuToggle}/>}
-            {!menuState && <FontAwesomeIcon icon={faBars} className={"text-[24px]"} onClick={MenuToggle}/>}
+        <div className={"w-full bg-gray-300 p-2 text-end"} id={"menu_btn"}>
+            {show_menu.showMenu && <FontAwesomeIcon icon={faXmark} onClick={MenuBtnToggle} className={"text-[24px]"}/>}
+            {!show_menu.showMenu && <FontAwesomeIcon icon={faBars} onClick={MenuBtnToggle} className={"text-[24px]"}/>}
         </div>
     )
 }
+
+
