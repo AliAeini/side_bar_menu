@@ -1,15 +1,17 @@
 import {HeaderMenu} from "@/components/sideBarMenu/HeaderMenu";
 import {SliderMenu} from "@/components/sideBarMenu/SliderMenu";
-import {IsShowMenu} from "@/store/IsShowMenu";
-import {useContext} from "react";
+import {EventHandler, MouseEventHandler, useState} from "react";
 
 export function SideBarMenu(){
-    const show_menu = useContext(IsShowMenu)
+    const [menuState, setMenuState] = useState(false)
+    const menuToggle = (): any => {
+        menuState ? setMenuState(false) : setMenuState(true)
+    }
     return(
         <>
             <div className={"h-[100vh] flex flex-col z-1"}>
-                <HeaderMenu/>
-                {show_menu.showMenu && <SliderMenu/>}
+                <HeaderMenu menuState={menuState} menuToggle={menuToggle}/>
+                {menuState && <SliderMenu/>}
             </div>
         </>
     )
