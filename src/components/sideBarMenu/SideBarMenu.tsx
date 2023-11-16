@@ -1,6 +1,6 @@
 import {HeaderMenu} from "@/components/sideBarMenu/HeaderMenu";
 import {SliderMenu} from "@/components/sideBarMenu/SliderMenu";
-import {EventHandler, MouseEventHandler, useState} from "react";
+import {useState} from "react";
 
 export function SideBarMenu(){
     const [menuState, setMenuState] = useState(false)
